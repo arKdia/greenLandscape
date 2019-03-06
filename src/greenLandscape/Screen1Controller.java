@@ -53,8 +53,14 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     private GridPane housesIDGridpane;
     
     @FXML
-    private Tab route1IDTab;
+    private GridPane houses22IDGridpane;
     
+    @FXML
+    private Tab route1IDTab;
+    @FXML
+    private Tab route2IDTab;
+    
+    int routeID = 1;
     int r1Label;
     int count;
     
@@ -106,19 +112,27 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     
     @FXML
     void event(Event ev) throws SQLException{
-        int routeID = 1;
+        //housesIDGridpane.getChildren().clear();
+        //houses22IDGridpane.getChildren().clear();
+        
         if (route1IDTab.isSelected()) {
             //for (int i=0; i < r1Label; i++)
             //    rLabelList[i].setText("");
+            housesIDGridpane.getChildren().clear();
             routeID = 1;
             
         }
+        else if (route2IDTab.isSelected()) {
+            houses22IDGridpane.getChildren().clear();
+            routeID = 2;
+        }
+        
         loadClients(routeID);
     }
     
     private void loadClients(int ID) throws SQLException{
         conn = DBConnection.connect();
-        System.out.println("Connection on tab1");
+        System.out.println("Connection on "+ID);
         
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         String sql = "select * from house where route_id = "+ID+";select * from route11;";
@@ -142,64 +156,110 @@ public class Screen1Controller implements Initializable, ControlledScreen {
         int i = 0;
         int j = 0;
         
-        housesIDGridpane.getChildren().clear();
+        //housesIDGridpane.getChildren().clear();
+        //housesIDGridpane2.getChildren().clear();
+
         
         while(rs[index].next()){ /*Number, street, city, zipcode*/
                 labelList1[i] = new Label();
                 labelList1[i].setText("Number:");
                 labelList1[i].setStyle("-fx-font-weight: bold");
-                housesIDGridpane.add(labelList1[i], h, v);
-
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h, v);
+                }
+                else if (route2IDTab.isSelected()) { 
+                    houses22IDGridpane.add(labelList1[i], h, v);
+                }
                 i++;
+
                 labelList1[i] = new Label();
                 labelList1[i].setText(rs[index].getString("h_number"));
-                housesIDGridpane.add(labelList1[i], h+1,v);
-                //System.out.println(h + " "+v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h+1,v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                }
                 i++;v++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText("Street:");
                 labelList1[i].setStyle("-fx-font-weight: bold");
-                housesIDGridpane.add(labelList1[i], h, v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h, v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h, v);
+                }
                 i++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText(rs[index].getString("street_name"));
-                housesIDGridpane.add(labelList1[i], h+1,v);
-                //System.out.println(h + " "+v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h+1,v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                }
                 i++;v++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText("City:");
                 labelList1[i].setStyle("-fx-font-weight: bold");
-                housesIDGridpane.add(labelList1[i], h, v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h, v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h, v);
+                }
                 i++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText(rs[index].getString("city"));
-                housesIDGridpane.add(labelList1[i], h+1,v);
-                //System.out.println(h + " "+v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h+1,v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                }
                 i++;v++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText("Zip Code:");
                 labelList1[i].setStyle("-fx-font-weight: bold");
-                housesIDGridpane.add(labelList1[i], h, v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h, v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h, v);
+                }
                 i++;
+                
                 labelList1[i] = new Label();
                 labelList1[i].setText(rs[index].getString("zip_code"));
-                housesIDGridpane.add(labelList1[i], h+1,v);
-                //System.out.println(h + " "+v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(labelList1[i], h+1,v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                }
                 v++;
+                
                 buttonlist1[j] = new Button();
                 buttonlist1[j].setText("< map");
                 buttonlist1[j].setStyle("-fx-font-weight: bold");
                 buttonlist1[j].setId(rs[index].getString("h_number")+"+"+rs[index].getString("street_name")+"+"+rs[index].getString("city")+"+"+rs[index].getString("zip_code"));
                 //buttonlist1[j].setOnAction(clientLocationHandler);
-                housesIDGridpane.add(buttonlist1[j], h, v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(buttonlist1[j], h, v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(buttonlist1[j], h, v);
+                }
                 j++;
+                
                 buttonlist1[j] = new Button();
                 buttonlist1[j].setText("more details >");
                 buttonlist1[j].setStyle("-fx-font-weight: bold");
                 buttonlist1[j].setId(rs[index].getString("house_id"));
                 //buttonlist1[j].setOnAction(clientDetailsHandler);
-                housesIDGridpane.add(buttonlist1[j], h+1, v);
-                //System.out.println(h + " "+v);
+                if (route1IDTab.isSelected()) {
+                    housesIDGridpane.add(buttonlist1[j], h+1, v);
+                }else if (route2IDTab.isSelected()) {
+                    houses22IDGridpane.add(buttonlist1[j], h+1, v);
+                }
                 v++;j++;
                 
             }
