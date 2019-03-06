@@ -53,12 +53,16 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     private GridPane housesIDGridpane;
     
     @FXML
-    private GridPane houses22IDGridpane;
+    private GridPane houses2IDGridpane;
+    @FXML
+    private GridPane houses3IDGridpane;
     
     @FXML
     private Tab route1IDTab;
     @FXML
     private Tab route2IDTab;
+    @FXML
+    private Tab route3IDTab;
     
     int routeID = 1;
     int r1Label;
@@ -80,8 +84,8 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     public void initialize(URL url, ResourceBundle rb) {
       // if (!isSpalshLoaded) {
             loadSplashScreen();
-            Image closeImage = new Image(getClass().getResourceAsStream("imgs/close.png"));
-            closeButtonID.setGraphic(new ImageView(closeImage));
+            //Image closeImage = new Image(getClass().getResourceAsStream("imgs/close.png"));
+            //closeButtonID.setGraphic(new ImageView(closeImage));
       //      isSpalshLoaded = true;
        //}
     }
@@ -113,18 +117,19 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     @FXML
     void event(Event ev) throws SQLException{
         //housesIDGridpane.getChildren().clear();
-        //houses22IDGridpane.getChildren().clear();
+        //houses2IDGridpane.getChildren().clear();
         
         if (route1IDTab.isSelected()) {
             //for (int i=0; i < r1Label; i++)
             //    rLabelList[i].setText("");
             housesIDGridpane.getChildren().clear();
             routeID = 1;
-            
-        }
-        else if (route2IDTab.isSelected()) {
-            houses22IDGridpane.getChildren().clear();
+        }else if (route2IDTab.isSelected()) {
+            houses2IDGridpane.getChildren().clear();
             routeID = 2;
+        }else if (route3IDTab.isSelected()) {
+            houses3IDGridpane.getChildren().clear();
+            routeID = 3;
         }
         
         loadClients(routeID);
@@ -166,9 +171,10 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 labelList1[i].setStyle("-fx-font-weight: bold");
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h, v);
-                }
-                else if (route2IDTab.isSelected()) { 
-                    houses22IDGridpane.add(labelList1[i], h, v);
+                }else if (route2IDTab.isSelected()) { 
+                    houses2IDGridpane.add(labelList1[i], h, v);
+                }else if (route3IDTab.isSelected()) { 
+                    houses3IDGridpane.add(labelList1[i], h, v);
                 }
                 i++;
 
@@ -177,7 +183,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h+1,v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                    houses2IDGridpane.add(labelList1[i], h+1,v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h+1,v);
                 }
                 i++;v++;
                 
@@ -187,7 +195,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h, v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h, v);
+                    houses2IDGridpane.add(labelList1[i], h, v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h, v);
                 }
                 i++;
                 
@@ -196,7 +206,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h+1,v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                    houses2IDGridpane.add(labelList1[i], h+1,v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h+1,v);
                 }
                 i++;v++;
                 
@@ -206,7 +218,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h, v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h, v);
+                    houses2IDGridpane.add(labelList1[i], h, v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h, v);
                 }
                 i++;
                 
@@ -215,7 +229,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h+1,v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                    houses2IDGridpane.add(labelList1[i], h+1,v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h+1,v);
                 }
                 i++;v++;
                 
@@ -225,7 +241,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h, v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h, v);
+                    houses2IDGridpane.add(labelList1[i], h, v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h, v);
                 }
                 i++;
                 
@@ -234,7 +252,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(labelList1[i], h+1,v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(labelList1[i], h+1,v);
+                    houses2IDGridpane.add(labelList1[i], h+1,v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(labelList1[i], h+1,v);
                 }
                 v++;
                 
@@ -246,7 +266,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(buttonlist1[j], h, v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(buttonlist1[j], h, v);
+                    houses2IDGridpane.add(buttonlist1[j], h, v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(buttonlist1[j], h, v);
                 }
                 j++;
                 
@@ -258,7 +280,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(buttonlist1[j], h+1, v);
                 }else if (route2IDTab.isSelected()) {
-                    houses22IDGridpane.add(buttonlist1[j], h+1, v);
+                    houses2IDGridpane.add(buttonlist1[j], h+1, v);
+                }else if (route3IDTab.isSelected()) {
+                    houses3IDGridpane.add(buttonlist1[j], h+1, v);
                 }
                 v++;j++;
                 
