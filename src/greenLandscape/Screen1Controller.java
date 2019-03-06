@@ -106,19 +106,22 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     
     @FXML
     void event(Event ev) throws SQLException{
+        int routeID = 1;
         if (route1IDTab.isSelected()) {
             //for (int i=0; i < r1Label; i++)
             //    rLabelList[i].setText("");
-            loadClients1();
+            routeID = 1;
+            
         }
+        loadClients(routeID);
     }
     
-    private void loadClients1() throws SQLException{
+    private void loadClients(int ID) throws SQLException{
         conn = DBConnection.connect();
         System.out.println("Connection on tab1");
         
         Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        String sql = "select * from house where route_id = 1;select * from route11;"; // from route 4
+        String sql = "select * from house where route_id = "+ID+";select * from route11;";
         String[] query = sql.split(";");
         
         int index = 0;
