@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="root" maxWidth="897.0" minHeight="122.0" prefHeight="647.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="greenLandscape.Screen1Controller">
+  <children>
+    <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="222.0" prefWidth="301.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+        <Label text="Green Landscape - Screen 1">
+          <font>
+            <Font name="Freehand521 BT" size="32.0" />
+          </font>
+        </Label>
+            <TabPane prefHeight="510.0" prefWidth="955.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="route1IDTab" onSelectionChanged="#event" text="Route 1">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="916.0">
+                           <children>
+                              <SplitPane dividerPositions="0.7592997811816192" layoutX="291.0" layoutY="131.0" prefHeight="498.0" prefWidth="916.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <ScrollPane layoutX="14.0" layoutY="116.0" prefHeight="496.0" prefViewportHeight="90.0" prefViewportWidth="200.0" prefWidth="280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <GridPane fx:id="housesIDGridpane" focusTraversable="true">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                </GridPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </children></AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Route 2">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="281.0" spacing="20.0">
+          <children>
+            <Button mnemonicParsing="false" onAction="#goToScreen2" text="Screen2" />
+            <Button mnemonicParsing="false" onAction="#goToScreen3" text="Screen3" />
+                  <Button mnemonicParsing="false" onAction="#goToScreen4" text="Screen4" />
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets />
+      </padding>
+    </VBox>
+      <Button fx:id="closeButtonID" layoutX="939.0" layoutY="7.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#closeButton" textFill="#9e0707" />
+      <ImageView fx:id="logoImage" fitHeight="710.0" fitWidth="975.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imgs/gardening.jpg" />
+         </image>
+      </ImageView>
+  </children>
+</AnchorPane>
