@@ -61,7 +61,9 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     private Connection conn;
     ResultSet[] rs;
     
-    Label[] rLabelList;
+    Label[] labelList1;
+    Button[] buttonlist1;
+    
     
 
     ScreensController myController;
@@ -128,6 +130,80 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 count = rs[index].getRow();
                 rs[index].beforeFirst();
             }
+        
+        labelList1 = new Label[count*8];
+        buttonlist1 = new Button[count*2];
+        
+        int h = 0; // ------
+        int v = 0; // |
+        int i = 0;
+        int j = 0;
+        
+        housesIDGridpane.getChildren().clear();
+        
+        while(rs[index].next()){ /*Number, street, city, zipcode*/
+                labelList1[i] = new Label();
+                labelList1[i].setText("Number:");
+                labelList1[i].setStyle("-fx-font-weight: bold");
+                housesIDGridpane.add(labelList1[i], h, v);
+
+                i++;
+                labelList1[i] = new Label();
+                labelList1[i].setText(rs[index].getString("h_number"));
+                housesIDGridpane.add(labelList1[i], h+1,v);
+                //System.out.println(h + " "+v);
+                i++;v++;
+                labelList1[i] = new Label();
+                labelList1[i].setText("Street:");
+                labelList1[i].setStyle("-fx-font-weight: bold");
+                housesIDGridpane.add(labelList1[i], h, v);
+                i++;
+                labelList1[i] = new Label();
+                labelList1[i].setText(rs[index].getString("street_name"));
+                housesIDGridpane.add(labelList1[i], h+1,v);
+                //System.out.println(h + " "+v);
+                i++;v++;
+                labelList1[i] = new Label();
+                labelList1[i].setText("City:");
+                labelList1[i].setStyle("-fx-font-weight: bold");
+                housesIDGridpane.add(labelList1[i], h, v);
+                i++;
+                labelList1[i] = new Label();
+                labelList1[i].setText(rs[index].getString("city"));
+                housesIDGridpane.add(labelList1[i], h+1,v);
+                //System.out.println(h + " "+v);
+                i++;v++;
+                labelList1[i] = new Label();
+                labelList1[i].setText("Zip Code:");
+                labelList1[i].setStyle("-fx-font-weight: bold");
+                housesIDGridpane.add(labelList1[i], h, v);
+                i++;
+                labelList1[i] = new Label();
+                labelList1[i].setText(rs[index].getString("zip_code"));
+                housesIDGridpane.add(labelList1[i], h+1,v);
+                //System.out.println(h + " "+v);
+                v++;
+                buttonlist1[j] = new Button();
+                buttonlist1[j].setText("< map");
+                buttonlist1[j].setStyle("-fx-font-weight: bold");
+                buttonlist1[j].setId(rs[index].getString("h_number")+"+"+rs[index].getString("street_name")+"+"+rs[index].getString("city")+"+"+rs[index].getString("zip_code"));
+                //buttonlist1[j].setOnAction(clientLocationHandler);
+                housesIDGridpane.add(buttonlist1[j], h, v);
+                j++;
+                buttonlist1[j] = new Button();
+                buttonlist1[j].setText("more details >");
+                buttonlist1[j].setStyle("-fx-font-weight: bold");
+                buttonlist1[j].setId(rs[index].getString("house_id"));
+                //buttonlist1[j].setOnAction(clientDetailsHandler);
+                housesIDGridpane.add(buttonlist1[j], h+1, v);
+                //System.out.println(h + " "+v);
+                v++;j++;
+                
+            }
+            //loaded1 = i;
+
+            rs[index].close();
+        
     }
     
     private void loadSplashScreen() {
