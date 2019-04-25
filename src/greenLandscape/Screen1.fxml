@@ -121,7 +121,7 @@
             </TabPane>
         <HBox alignment="CENTER" prefHeight="57.0" prefWidth="281.0" spacing="20.0">
           <children>
-            <Button mnemonicParsing="false" onAction="#goToScreen2" text="Screen2" />
+            <Button mnemonicParsing="false" onAction="#goToScreen2" text="New Account" />
             <Button mnemonicParsing="false" onAction="#goToScreen3" text="Screen3" />
                   <Button mnemonicParsing="false" onAction="#goToScreen4" text="Screen4" />
           </children>

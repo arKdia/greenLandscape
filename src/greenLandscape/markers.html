@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Set the size of the div element that contains the map */
+            #map {
+                height: 300px;  /* The height is 400 pixels */
+                width: 100%;  /* The width is the width of the web page */
+            }
+        </style>
+    </head>
+    <body>
+        
+        <!--The div element for the map -->
+        <div id="map"></div>
+
+        <script>
+            var map; //new
+            var marker; //new
+            // Initialize and add the map
+            function initMap() {
+                var bakersfield = {lat: 35.393528, lng: -119.043732};
+                map = new google.maps.Map(//var map
+                        document.getElementById('map'), {zoom: 12, center: bakersfield});
+                marker = new google.maps.Marker({
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    position: bakersfield
+                }); 
+                //marker.setAnimation(google.maps.Animation.BOUNCE);
+                //marker.addListener('click', toggleBounce);
+            }
+
+            function updateMarker(_lat, _lng, str, cit) {
+               
+                //var _str = str.create(java.lang.String,10);
+
+               var contentString =
+                '<div id="content">'+
+                  '<div id="siteNotice">'+
+                  '</div>'+
+                  '<div id="bodyContent">'+
+                    '<p><b>'+str+'</b><br><b>'+cit+'</b></p>'+
+                  '</div>'+
+                '</div>';
+            
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+                
+                marker.setPosition({lat: _lat, lng: _lng});
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                 });
+                map.setCenter(new google.maps.LatLng(_lat, _lng));
+                map.setZoom(16);
+                marker.setVisible(true);
+            }
+
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0_iRKvxshSE6PqqTiBptnjy68KX94KxY&callback=initMap">
+        </script>
+    </body>
+</html>

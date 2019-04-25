@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -7,17 +10,174 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="150.0" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml" fx:controller="greenLandscape.Screen2Controller">
+<AnchorPane id="AnchorPane" prefHeight="779.0" prefWidth="1168.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="greenLandscape.Screen2Controller">
   <children>
-    <VBox alignment="CENTER" prefHeight="174.0" prefWidth="135.9998779296875" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" prefHeight="779.0" prefWidth="1168.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Label text="Screen 2">
+        <Label prefHeight="160.0" prefWidth="477.0" text="Green Landscape - Screen 2">
           <font>
-            <Font size="18.0" />
+            <Font name="Freehand521 BT" size="32.0" />
           </font>
         </Label>
-        <Button mnemonicParsing="false" onAction="#goToScreen1" text="Go to Screen1" />
-        <Button mnemonicParsing="false" onAction="#goToScreen3" text="Go To Screen3" />
+            <Pane prefHeight="557.0" prefWidth="1168.0">
+               <children>
+                  <GridPane fx:id="insert1IDGridpane" layoutX="10.0" layoutY="12.0" prefHeight="544.0" prefWidth="1148.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="247.0" prefWidth="247.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="197.0" prefWidth="197.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="266.0" minWidth="247.0" prefWidth="247.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" prefWidth="250.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Customer info:" translateX="10.0">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label text="Alreade a customer?" translateX="40.0" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="40.0" text="First Name:" translateX="40.0" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="70.0" text="Last Name:" translateX="40.0" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="House Number:" translateX="40.0" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Street Name:" translateX="40.0" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="City:" translateX="40.0" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Zip Code:" translateX="40.0" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Phone:" translateX="40.0" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="House Info:" translateX="10.0" GridPane.rowIndex="10">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label text="House Number:" translateX="40.0" GridPane.rowIndex="11">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Street Name:" translateX="40.0" GridPane.rowIndex="12">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="City:" translateX="40.0" GridPane.rowIndex="13">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Zip Code:" translateX="40.0" GridPane.rowIndex="14">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Contract:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label text="Monthly fee:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="12">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label text="Description:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="13">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="checkBoxID1" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="comboBoxID1" onAction="#setClients1" onMouseClicked="#insert" prefWidth="150.0" translateX="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="nameID1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="lastID1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="numID1" maxWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="streetID1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="cityID1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="zipID1" maxWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="phID1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="hNumID1" maxWidth="86.0" prefHeight="25.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="hStreetID1" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <TextField fx:id="hCityID1" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <TextField fx:id="hZipID1" maxWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                        <TextField fx:id="feeID1" maxWidth="86.0" prefHeight="31.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+                        <TextArea fx:id="descID1" prefHeight="88.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="13" GridPane.rowSpan="3" />
+                        <TextField fx:id="cID1" editable="false" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="findLL" mnemonicParsing="false" onAction="#getCoordinates" text="Get GPS Coordinates " translateX="40.0" GridPane.rowIndex="15" />
+                        <TextField fx:id="lat" editable="false" maxWidth="98.5" prefHeight="25.0" prefWidth="98.5" promptText="Latitude" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="15" />
+                        <TextField fx:id="lng" editable="false" maxWidth="98.8" prefHeight="25.0" prefWidth="98.8" promptText="Longitude" translateX="1.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
+                        <WebView fx:id="newCustomerView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="9" />
+                        <Label text="Select Route:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton fx:id="r1" mnemonicParsing="false" onAction="#showRoute1" text="Route 1" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <ToggleButton fx:id="r2" mnemonicParsing="false" onAction="#showRoute2" text="Route 2" translateX="80.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <ToggleButton fx:id="r3" mnemonicParsing="false" onAction="#showRoute3" text="Route 3" translateX="160.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <ToggleButton fx:id="r4" mnemonicParsing="false" onAction="#showRoute4" text="Route 4" translateX="240.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets right="2.0" />
+                           </GridPane.margin>
+                        </ToggleButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1168.0" spacing="20.0">
+               <children>
+                  <Button fx:id="saveButtonID1" mnemonicParsing="false" onAction="#save1" text="Save" />
+              <Button mnemonicParsing="false" onAction="#goToScreen1" text="Cancel" />
+              <Button mnemonicParsing="false" onAction="#goToScreen3" text="Go To Screen3" />
+               </children>
+            </HBox>
       </children>
     </VBox>
   </children>
