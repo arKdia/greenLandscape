@@ -22,6 +22,7 @@ public class DBConnection {
     public static Connection connect() throws SQLException {
         try {
             Class.forName("org.postgresql.Driver");
+            
         } catch(ClassNotFoundException cnfe) {
             System.err.println("Error: "+cnfe.getMessage() );
         }

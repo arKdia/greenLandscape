@@ -26,6 +26,7 @@ public class ScreensFramework extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         
         ScreensController mainContainer = new ScreensController();
         mainContainer.loadScreen(ScreensFramework.screen1ID, ScreensFramework.screen1File);
@@ -52,6 +53,7 @@ public class ScreensFramework extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         launch(args);
     }
 }

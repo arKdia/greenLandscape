@@ -1,46 +1,9 @@
-/*
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.
- *
- * The contents of this file are subject to the terms of either the GNU
- * General Public License Version 2 only ("GPL") or the Common Development
- * and Distribution License("CDDL") (collectively, the "License"). You
- * may not use this file except in compliance with the License. You can
- * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
- * or packager/legal/LICENSE.txt.  See the License for the specific
- * language governing permissions and limitations under the License.
- *
- * When distributing the software, include this License Header Notice in each
- * file and include the License file at packager/legal/LICENSE.txt.
- *
- * GPL Classpath Exception:
- * Oracle designates this particular file as subject to the "Classpath"
- * exception as provided by Oracle in the GPL Version 2 section of the License
- * file that accompanied this code.
- *
- * Modifications:
- * If applicable, add the following below the License Header, with the fields
- * enclosed by brackets [] replaced by your own identifying information:
- * "Portions Copyright [year] [name of copyright owner]"
- *
- * Contributor(s):
- * If you wish your version of this file to be governed by only the CDDL or
- * only the GPL Version 2, indicate your decision by adding "[Contributor]
- * elects to include this software in this distribution under the [CDDL or GPL
- * Version 2] license."  If you don't indicate a single choice of license, a
- * recipient has the option to distribute your version of this file under
- * either the CDDL, the GPL Version 2 or to extend the choice of license to
- * its licensees as provided above.  However, if you add GPL Version 2 code
- * and therefore, elected the GPL Version 2 license, then the option applies
- * only if the new code is made subject to such option by the copyright
- * holder.
- */ 
+
 
 package greenLandscape;
 
 import DBConnect.DBConnection;
+import java.io.File;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -51,11 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -72,17 +34,29 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * FXML Controller class
  *
  * @author Angie
  */
+
 public class Screen2Controller implements Initializable , ControlledScreen {
 
     ScreensController myController;
@@ -146,6 +120,7 @@ public class Screen2Controller implements Initializable , ControlledScreen {
     
     private Connection conn;
     ResultSet[] rs;
+    ResultSet   rsr;
     ObservableList<String> clients1;
     
     WebEngine webEngine;
@@ -161,6 +136,7 @@ public class Screen2Controller implements Initializable , ControlledScreen {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
         this.comboBoxID1.disableProperty().bind(this.checkBoxID1.selectedProperty().not());
         ToggleGroup group = new ToggleGroup();
         r1.setToggleGroup(group);
@@ -351,7 +327,89 @@ public class Screen2Controller implements Initializable , ControlledScreen {
     
     @FXML
     private void showRoute1(ActionEvent event) {
-        route = 1;
+        try {
+            route = 1;
+
+            conn = DBConnection.connect();
+            Statement s = conn.createStatement();
+            String sql = "select * from house where route_id="+route;
+            rsr = s.executeQuery(sql);
+            String strPath = "C:\\Users\\Mario\\Documents\\NetBeansProjects\\JFX-MultiScreen-master\\Green\\src\\greenLandscape\\myData.xml";
+
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+
+            Document doc = documentBuilder.newDocument();
+
+            Element ele = doc.createElement("markers");
+            doc.appendChild(ele);
+
+            int iRows = 0;
+            while ((rsr != null) && (rsr.next())) {
+                ++iRows;
+                Element marker = doc.createElement("marker");
+                ele.appendChild(marker);
+
+                Attr attRoute = doc.createAttribute("type");
+                attRoute.setValue(rsr.getString("route_id"));
+                marker.setAttributeNode(attRoute);
+
+                Attr attLng = doc.createAttribute("lng");
+                attLng.setValue(rsr.getString("longitude"));
+                marker.setAttributeNode(attLng);
+
+                Attr attLat = doc.createAttribute("lat");
+                attLat.setValue(rsr.getString("latitude"));
+                marker.setAttributeNode(attLat);
+
+                Attr attAdd = doc.createAttribute("address");
+                attAdd.setValue(rsr.getString("h_number") + " " + rsr.getString("street_name") + " " + rsr.getString("city") + ", CA " + rsr.getString("zip_code"));
+                marker.setAttributeNode(attAdd);
+
+                Attr attName = doc.createAttribute("name");
+                attName.setValue("Erick Toscano");
+                marker.setAttributeNode(attName);
+
+                Attr attid = doc.createAttribute("id");
+                attid.setValue(String.valueOf(iRows));
+                marker.setAttributeNode(attid);
+
+            }
+            // creating and writing to xml file
+            TransformerFactory tff = TransformerFactory
+                    .newInstance();
+            Transformer tf = tff.newTransformer();
+            DOMSource domSource = new DOMSource(doc);
+            StreamResult streamResult = new StreamResult(new File(strPath));
+
+            tf.setOutputProperty(
+                    "{http://xml.apache.org/xslt}indent-amount", "2");
+            tf.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            tf.transform(domSource, streamResult);
+
+            System.out.println("XML file created!");
+            
+            
+            webEngine = newCustomerView.getEngine();
+            final URL urlGoogleMaps = getClass().getResource("loadMarkers.html");
+            
+            
+            com.sun.javafx.webkit.WebConsoleListener.setDefaultListener(
+            (webView, message, lineNumber, sourceId)-> System.out.println("Console: [" + sourceId + ":" + lineNumber + "] " + message)
+            );
+            
+            webEngine.load(urlGoogleMaps.toExternalForm());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Screen2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(Screen2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Screen2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Screen2Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @FXML
     private void showRoute2(ActionEvent event) {

@@ -45,7 +45,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -119,17 +119,17 @@
                               <Font name="System Bold" size="21.0" />
                            </font>
                         </Label>
-                        <Label text="Contract:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                        <Label text="Contract:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="12">
                            <font>
-                              <Font name="System Bold" size="33.0" />
+                              <Font name="System Bold" size="31.0" />
                            </font>
                         </Label>
-                        <Label text="Monthly fee:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="12">
+                        <Label text="Monthly fee:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="13">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>
                         </Label>
-                        <Label text="Description:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="13">
+                        <Label text="Description:" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="14">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>
@@ -147,22 +147,22 @@
                         <TextField fx:id="hStreetID1" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <TextField fx:id="hCityID1" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                         <TextField fx:id="hZipID1" maxWidth="86.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-                        <TextField fx:id="feeID1" maxWidth="86.0" prefHeight="31.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="12" />
-                        <TextArea fx:id="descID1" prefHeight="88.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="13" GridPane.rowSpan="3" />
+                        <TextField fx:id="feeID1" maxWidth="86.0" prefHeight="31.0" prefWidth="86.0" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+                        <TextArea fx:id="descID1" prefHeight="88.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="14" GridPane.rowSpan="2" />
                         <TextField fx:id="cID1" editable="false" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <Button fx:id="findLL" mnemonicParsing="false" onAction="#getCoordinates" text="Get GPS Coordinates " translateX="40.0" GridPane.rowIndex="15" />
                         <TextField fx:id="lat" editable="false" maxWidth="98.5" prefHeight="25.0" prefWidth="98.5" promptText="Latitude" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="15" />
                         <TextField fx:id="lng" editable="false" maxWidth="98.8" prefHeight="25.0" prefWidth="98.8" promptText="Longitude" translateX="1.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="15" />
-                        <WebView fx:id="newCustomerView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="9" />
-                        <Label text="Select Route:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                        <WebView fx:id="newCustomerView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowSpan="11" />
+                        <Label text="Select Route:" translateX="10.0" GridPane.columnIndex="3" GridPane.rowIndex="11">
                            <font>
-                              <Font name="System Bold" size="33.0" />
+                              <Font name="System Bold" size="31.0" />
                            </font>
                         </Label>
-                        <ToggleButton fx:id="r1" mnemonicParsing="false" onAction="#showRoute1" text="Route 1" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                        <ToggleButton fx:id="r2" mnemonicParsing="false" onAction="#showRoute2" text="Route 2" translateX="80.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                        <ToggleButton fx:id="r3" mnemonicParsing="false" onAction="#showRoute3" text="Route 3" translateX="160.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                        <ToggleButton fx:id="r4" mnemonicParsing="false" onAction="#showRoute4" text="Route 4" translateX="240.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                        <ToggleButton fx:id="r1" mnemonicParsing="false" onAction="#showRoute1" text="Route 1" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <ToggleButton fx:id="r2" mnemonicParsing="false" onAction="#showRoute2" text="Route 2" translateX="80.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <ToggleButton fx:id="r3" mnemonicParsing="false" onAction="#showRoute3" text="Route 3" translateX="160.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <ToggleButton fx:id="r4" mnemonicParsing="false" onAction="#showRoute4" text="Route 4" translateX="240.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="11">
                            <GridPane.margin>
                               <Insets right="2.0" />
                            </GridPane.margin>
@@ -173,9 +173,9 @@
             </Pane>
             <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1168.0" spacing="20.0">
                <children>
-                  <Button fx:id="saveButtonID1" mnemonicParsing="false" onAction="#save1" text="Save" />
-              <Button mnemonicParsing="false" onAction="#goToScreen1" text="Cancel" />
-              <Button mnemonicParsing="false" onAction="#goToScreen3" text="Go To Screen3" />
+                  <Button fx:id="saveButtonID1" mnemonicParsing="false" onAction="#save1" prefWidth="117.0" text="Save" />
+              <Button mnemonicParsing="false" onAction="#goToScreen1" prefWidth="117.0" text="Cancel" />
+              <Button maxWidth="117.0" mnemonicParsing="false" onAction="#goToScreen3" text="Go To Screen3" />
                </children>
             </HBox>
       </children>

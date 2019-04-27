@@ -7,6 +7,7 @@ import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -31,6 +33,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.util.Duration;
 
 /**
@@ -64,7 +68,14 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     @FXML
     private Tab route3IDTab;
     
+    @FXML
+    private WebView mapIDWebView;
+    
+    @FXML
+    private WebView mapIDWebView22;
+    
     int routeID = 1;
+    int routeView;
     int r1Label;
     int count;
     
@@ -73,6 +84,12 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     
     Label[] labelList1;
     Button[] buttonlist1;
+    
+    Button b;
+    
+    private String delAddress;
+    private String upAddress;
+    
     
     
 
@@ -83,6 +100,7 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       // if (!isSpalshLoaded) {
+            System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
             loadSplashScreen();
             //Image closeImage = new Image(getClass().getResourceAsStream("imgs/close.png"));
             //closeButtonID.setGraphic(new ImageView(closeImage));
@@ -101,7 +119,21 @@ public class Screen1Controller implements Initializable, ControlledScreen {
     
     @FXML
     private void goToScreen3(ActionEvent event){
-       myController.setScreen(ScreensFramework.screen3ID);
+        if (upAddress == null) {
+                System.out.printf("No address selected \n");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("view house on map first!");
+                alert.showAndWait();
+        } else {
+            myController.setScreen(ScreensFramework.screen3ID);
+            //Screen3Controller s3C = new Screen3Controller();    
+            //s3C.upAddress = upAddress;
+            //s3C = null;
+            //s3C.loadUpdate();
+        }
+       
     }
     
     @FXML
@@ -123,6 +155,7 @@ public class Screen1Controller implements Initializable, ControlledScreen {
             //for (int i=0; i < r1Label; i++)
             //    rLabelList[i].setText("");
             housesIDGridpane.getChildren().clear();
+            //routeView = 1;
             routeID = 1;
         }else if (route2IDTab.isSelected()) {
             houses2IDGridpane.getChildren().clear();
@@ -134,6 +167,74 @@ public class Screen1Controller implements Initializable, ControlledScreen {
         
         loadClients(routeID);
     }
+    
+    EventHandler<ActionEvent> clientLocationHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            Screen3Controller sC3 = new Screen3Controller();
+
+            String address;
+
+            b = (Button) event.getSource();
+            address = b.getId();
+            delAddress = address.replaceAll("\\+", ";");
+            upAddress = delAddress;
+            
+            //sC3.upAddress = delAddress;
+            sC3.setAddr(delAddress);
+            //sC3.loadUpdate(delAddress);
+            
+            //System.out.println(sC3.upAddress);
+            
+                    
+            switch (routeID) {
+                case 1:
+                    //label.setText("Client Details for ID: "+b.getId());
+                    //scrollPaneID1.setTranslateX(-5000);
+                    //route1DetailIDGridPane.setTranslateX(-5000);
+                    WebEngine webEngine = mapIDWebView.getEngine();
+                    webEngine.load("http://maps.google.co.in/maps?q=" + b.getId());
+                    break;
+
+                case 2: //route 2
+                    //tab2label.setText("Client Details for ID: "+b.getId());
+                    //scrollPaneID2.setTranslateX(-5000);
+                    //route22DetailIDGridPane.setTranslateX(-5000);
+                    WebEngine webEngine22 = mapIDWebView22.getEngine();
+                    webEngine22.load("http://maps.google.co.in/maps?q=" + b.getId());
+                    break;
+
+            /*case 2: //route 3
+                //tab2label.setText("Client Details for ID: "+b.getId());
+                scrollPaneID3.setTranslateX(-5000);
+                route2DetailIDGridPane.setTranslateX(-5000);
+                WebEngine webEngine2 = mapIDWebView2.getEngine();
+                webEngine2.load("http://maps.google.co.in/maps?q=" + b.getId());
+                break;
+
+            case 4:
+                //tablabel.setText("Client Details for ID: "+b.getId());
+                route4DetailIDGridPane.setTranslateX(-5000);
+                WebEngine webEngine4 = mapIDWebView4.getEngine();
+                webEngine4.load("http://maps.google.co.in/maps?q=" + b.getId());
+                break;
+
+            case 5:
+                //tablabel.setText("Client Details for ID: "+b.getId());
+                route5DetailIDGridPane.setTranslateX(-5000);
+                WebEngine webEngine5 = mapIDWebView5.getEngine();
+                webEngine5.load("http://maps.google.co.in/maps?q=" + b.getId());
+                break;
+
+            case 6:
+                //tab6label.setText("Client Details for ID: "+b.getId());
+                route4DetailIDGridPane.setTranslateX(-5000);
+                WebEngine webEngine6 = mapIDWebView6.getEngine();
+                webEngine6.load("http://maps.google.co.in/maps?q=" + b.getId());
+                break;*/
+            }
+        }
+    };
     
     private void loadClients(int ID) throws SQLException{
         conn = DBConnection.connect();
@@ -262,7 +363,7 @@ public class Screen1Controller implements Initializable, ControlledScreen {
                 buttonlist1[j].setText("< map");
                 buttonlist1[j].setStyle("-fx-font-weight: bold");
                 buttonlist1[j].setId(rs[index].getString("h_number")+"+"+rs[index].getString("street_name")+"+"+rs[index].getString("city")+"+"+rs[index].getString("zip_code"));
-                //buttonlist1[j].setOnAction(clientLocationHandler);
+                buttonlist1[j].setOnAction(clientLocationHandler);
                 if (route1IDTab.isSelected()) {
                     housesIDGridpane.add(buttonlist1[j], h, v);
                 }else if (route2IDTab.isSelected()) {
@@ -320,5 +421,57 @@ public class Screen1Controller implements Initializable, ControlledScreen {
         new Thread(sleeper).start();
 
     }
+    
+    @FXML
+    private void delete(ActionEvent event){
+        try {
+            
+            boolean inserted = false;
+            if (delAddress == null) {
+                System.out.printf("address is empty \n");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("view house on map first!");
+                alert.showAndWait();
+                inserted = false;
+
+            } else {
+                
+                String[] add = delAddress.split(";");
+                System.out.printf("address: %s %s\n", add[0], add[1], add[2], add[3]);
+                String num = add[0];
+                String street = add[1];
+                String zip = add[3];
+                
+                conn = DBConnection.connect();
+                String sql = "select * from delHouse(?,?,?);";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, num); 
+                pstmt.setString(2, street);
+                pstmt.setString(3, zip); 
+
+                inserted = pstmt.execute();
+                
+                if (inserted){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Dialog");
+                    alert.setHeaderText(null);
+                    alert.setContentText("House Deleted!");
+                    alert.showAndWait();
+                }
+
+          }
+
+        } catch (SQLException e) {
+            System.err.print("Err on connection: " + e);
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } 
+        
+    }
+        
     
 }
