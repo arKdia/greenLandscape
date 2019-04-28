@@ -327,12 +327,34 @@ public class Screen2Controller implements Initializable , ControlledScreen {
     
     @FXML
     private void showRoute1(ActionEvent event) {
+       route = 1;
+       loadXML(route);
+        
+    }
+    @FXML
+    private void showRoute2(ActionEvent event) {
+        route = 2;
+        loadXML(route);
+    }
+    @FXML
+    private void showRoute3(ActionEvent event) {
+        route = 3;
+        loadXML(route);
+    }
+    @FXML
+    private void showRoute4(ActionEvent event) {
+        route = 4;
+        loadXML(route);
+    }
+    
+    public void loadXML(int r){
         try {
-            route = 1;
+            //route = 1;
 
             conn = DBConnection.connect();
             Statement s = conn.createStatement();
-            String sql = "select * from house where route_id="+route;
+            //String sql = "select * from house where route_id="+r;
+            String sql = "select h.*, c.firstname, c.lastname, c.phone from house as h, client as c where h.client_id=c.client_id and route_id="+r;
             rsr = s.executeQuery(sql);
             String strPath = "C:\\Users\\Mario\\Documents\\NetBeansProjects\\JFX-MultiScreen-master\\Green\\src\\greenLandscape\\myData.xml";
 
@@ -350,6 +372,10 @@ public class Screen2Controller implements Initializable , ControlledScreen {
                 Element marker = doc.createElement("marker");
                 ele.appendChild(marker);
 
+                Attr attPhone = doc.createAttribute("phone");
+                attPhone.setValue(rsr.getString("phone"));
+                marker.setAttributeNode(attPhone);
+                
                 Attr attRoute = doc.createAttribute("type");
                 attRoute.setValue(rsr.getString("route_id"));
                 marker.setAttributeNode(attRoute);
@@ -367,7 +393,7 @@ public class Screen2Controller implements Initializable , ControlledScreen {
                 marker.setAttributeNode(attAdd);
 
                 Attr attName = doc.createAttribute("name");
-                attName.setValue("Erick Toscano");
+                attName.setValue(rsr.getString("firstname") +" "+ rsr.getString("lastname"));
                 marker.setAttributeNode(attName);
 
                 Attr attid = doc.createAttribute("id");
@@ -410,18 +436,6 @@ public class Screen2Controller implements Initializable , ControlledScreen {
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Screen2Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    @FXML
-    private void showRoute2(ActionEvent event) {
-        route = 2;
-    }
-    @FXML
-    private void showRoute3(ActionEvent event) {
-        route = 3;
-    }
-    @FXML
-    private void showRoute4(ActionEvent event) {
-        route = 4;
     }
     
     @FXML

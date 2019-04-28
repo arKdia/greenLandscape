@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="route1Report" pageWidth="760" pageHeight="500" orientation="Landscape" columnWidth="720" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="71c66a5d-0f09-4c26-9ebe-2f0ecab4f0b7">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select weekday, start_date, c.year, c.make, c.model, e.firstname, e.lastname, (select count(house_id) as houses from house where route_id = route.route_id),
+(select sum(fee) as monthly from contract as cn, house as hh where cn.contract_Id = hh.contract_Id AND hh.route_ID = route.route_id)
+from route, car as c, employee as e, assign_to as ass
+where route.car_id = c.car_id AND c.car_id = ass.car_id AND ass.employee_ID = e.employee_ID AND route_id = 2]]>
+	</queryString>
+	<field name="weekday" class="java.lang.String"/>
+	<field name="start_date" class="java.sql.Date"/>
+	<field name="year" class="java.lang.Integer"/>
+	<field name="make" class="java.lang.String"/>
+	<field name="model" class="java.lang.String"/>
+	<field name="firstname" class="java.lang.String"/>
+	<field name="lastname" class="java.lang.String"/>
+	<field name="houses" class="java.lang.Long"/>
+	<field name="monthly" class="java.math.BigDecimal"/>
+	<variable name="houses_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{houses}]]></variableExpression>
+	</variable>
+	<variable name="monthly_1" class="java.math.BigDecimal" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{monthly}]]></variableExpression>
+	</variable>
+	<variable name="monthly_2" class="java.math.BigDecimal" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{monthly}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="359" splitType="Stretch">
+			<image>
+				<reportElement x="2" y="209" width="180" height="146" uuid="78ea7af9-2417-4339-a7f2-451cc88eb7fa"/>
+				<imageExpression><![CDATA["C:\\Users\\Mario\\Documents\\NetBeansProjects\\JFX-MultiScreen-master\\Green\\src\\greenLandscape\\imgs\\daisy.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="2" y="162" width="180" height="146" uuid="81ef5263-0a4e-41a7-acb0-6009f758c248"/>
+				<imageExpression><![CDATA["C:\\Users\\Mario\\Documents\\NetBeansProjects\\JFX-MultiScreen-master\\Green\\src\\greenLandscape\\imgs\\daisy.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="233" height="162" uuid="6698de64-0fa9-4a3d-8395-b6cafb597cf1"/>
+				<imageExpression><![CDATA["C:\\Users\\Mario\\Documents\\NetBeansProjects\\JFX-MultiScreen-master\\Green\\src\\greenLandscape\\imgs\\logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="219" y="0" width="501" height="66" forecolor="#006699" backcolor="#006699" uuid="b30b48d3-ce28-436c-92a7-74f1b54f4742"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="215" y="0" width="501" height="66" forecolor="#FFFFFF" uuid="3f28d633-5060-4002-8346-ffc49a6a1387"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="54" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Green Landscape]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="214" splitType="Stretch">
+			<staticText>
+				<reportElement x="553" y="0" width="159" height="35" forecolor="#666666" uuid="e58df891-273c-4348-ab36-fd3906d8a1eb"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="21"/>
+				</textElement>
+				<text><![CDATA[Route 2 - Details]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="218" y="30" width="501" height="23" forecolor="#FFFFFF" backcolor="#70A9C6" uuid="e4f71bb7-e69e-48db-afcb-295ebe56c13d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="222" y="33" width="100" height="20" forecolor="#FFFFFF" uuid="d29b85fc-ec0a-4328-b7d3-70da68303374"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Weekday : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="56" width="123" height="20" uuid="f9449ae6-08d5-4c3e-bc54-70577c2151cb"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last Modified :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="343" y="33" width="100" height="20" forecolor="#FFFFFF" uuid="fae39061-d815-4056-bd99-503156dc5079"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{weekday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="57" width="114" height="20" uuid="a78e44db-efb3-4af3-8527-5e7bb7ae098c"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{start_date}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="1" y="77" width="719" height="15" forecolor="#006699" backcolor="#006699" uuid="b25f03c7-11f5-4e5d-993f-55984a25e793"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="220" y="105" width="155" height="20" uuid="f4e0ac38-e2df-4cd2-aab6-cba01cb352f2"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number of Houses :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="131" width="155" height="20" uuid="5881c354-facd-4565-b5da-75b9a1fae3e8"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monthly Income :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="157" width="155" height="20" uuid="d022a53e-83ac-4b88-8cb2-fe08e3bd3d1d"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Car Used :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="194" width="184" height="20" uuid="98520af8-a9f0-4e17-9abf-05673039cf3b"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employees on Route :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="413" y="105" width="100" height="20" uuid="8e6fe5ee-5db5-4207-a327-972cba48a461"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{houses}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Page">
+				<reportElement x="413" y="131" width="100" height="20" uuid="58231d46-8eab-47c8-a383-465ddc4c116a"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{monthly_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="157" width="44" height="20" uuid="6c237036-b7b8-485e-a2e8-95c110e09387"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="157" width="60" height="20" uuid="e729ad4f-b456-4ab2-8e19-e8b55ad7584f"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{make}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="157" width="55" height="20" uuid="9b9aa36b-8dbd-430a-966c-b6a525d159fc"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="215" y="187" width="501" height="1" uuid="5a427a27-f6e4-49c3-b1d0-f13cf562c8d3"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="12" splitType="Stretch">
+			<staticText>
+				<reportElement x="423" y="0" width="295" height="8" forecolor="#FFFFFF" uuid="67888605-6cab-4fc0-8099-7555767743ee"/>
+				<textElement>
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[lastname]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="0" width="104" height="8" forecolor="#FFFFFF" uuid="74b999f7-21ac-40a6-b171-a482823cf929"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<text><![CDATA[firstname]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+		<band height="23">
+			<textField>
+				<reportElement x="309" y="0" width="104" height="20" uuid="ffe2db90-9774-480d-bb29-8cdd92db68ab"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{firstname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="0" width="297" height="20" uuid="49ae85f5-3858-40ae-9514-e83829d34d9f"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="154" height="20" uuid="3d0e7b74-5feb-4508-bfd5-d298a9c48801"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="571" y="2" width="89" height="20" uuid="5a543437-9806-4ce6-afe8-51dd8f7f5c73"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="660" y="2" width="58" height="20" uuid="c950cb2f-9b93-414a-b601-5f5382aedff6"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

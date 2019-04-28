@@ -1,7 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<markers>
-  <marker address="1520 Hub Ave. Bakersfield, CA 93304" id="1" lat="35.319477" lng="-119.020084" name="Erick Toscano" type="1"/>
-  <marker address="1509 Hub Ave. Bakersfield, CA 93304" id="2" lat="35.319068" lng="-119.019441" name="Erick Toscano" type="1"/>
-  <marker address="1505 Hub Ave. Bakersfield, CA 93304" id="3" lat="35.319040" lng="-119.019211" name="Erick Toscano" type="1"/>
-  <marker address="1521 Hub Ave. Bakersfield, CA 93304" id="4" lat="35.319092" lng="-119.020060" name="Erick Toscano" type="1"/>
+<?xml version="1.0" encoding="UTF-8"?><markers>
+  <marker address="5220 Milagro Dr. Bakersfield, CA 93307" id="1" lat="35.350336" lng="-118.945746" name="Bernardina Connick" phone="3452996113" type="4"/>
+  <marker address="1816 Duke Dr. Bakersfield, CA 93305" id="2" lat="35.404163" lng="-118.972400" name="Eddie Noddings" phone="7332262777" type="4"/>
+  <marker address="2807 Blade Ave Bakersfield, CA 93306" id="3" lat="35.403282" lng="-118.961369" name="Darb Woloschinski" phone="8023967730" type="4"/>
+  <marker address="5206 San Mateo Dr. Bakersfield, CA 93307" id="4" lat="35.349651" lng="-118.946565" name="Linn Durnall" phone="6619123116" type="4"/>
+  <marker address="5406 San Mateo Dr. Bakersfield, CA 93307" id="5" lat="35.349695" lng="-118.943835" name="Ailyn McArt" phone="2788362460" type="4"/>
+  <marker address="5221 Milagro Dr. Bakersfield, CA 93307" id="6" lat="35.349943" lng="-118.945746" name="Fancie Daybell" phone="7933986830" type="4"/>
+  <marker address="5308 Mar Grande Dr. Bakersfield, CA 93307" id="7" lat="35.344617" lng="-118.944927" name="Fancie Daybell" phone="7933986830" type="4"/>
+  <marker address="5416 Caballeros Dr. Bakersfield, CA 93307" id="8" lat="35.351695" lng="-118.943699" name="Bernete Demare" phone="7221703517" type="4"/>
+  <marker address="5202 Tyner Ln Bakersfield, CA 93307" id="9" lat="35.348307" lng="-118.946747" name="Sergeant Silman" phone="5675807840" type="4"/>
+  <marker address="5410 San Mateo Dr. Bakersfield, CA 93307" id="10" lat="35.349690" lng="-118.943631" name="Cesar Heersema" phone="9235743611" type="4"/>
+  <marker address="2413 University Ave. Bakersfield, CA 93306" id="11" lat="35.404748" lng="-118.965805" name="Cy Bourrel" phone="6641542943" type="4"/>
 </markers>
